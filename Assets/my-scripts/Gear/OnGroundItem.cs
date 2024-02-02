@@ -80,7 +80,7 @@ public class OnGroundItem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        EquipItemScript EquipItem = other.gameObject.GetComponent<EquipItemScript>();
+        //EquipItemScript EquipItem = other.gameObject.GetComponent<EquipItemScript>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
@@ -94,36 +94,44 @@ public class OnGroundItem : MonoBehaviour
         {
             // Equip it as you pick it up on ground
 
+            GameObject clone = null;
+
             if (ItemType == ITEMTYPE.SWORD)
             {
-               // EquipItem.EquipRightHandWith(Instantiate(ItemPool.instance.SwordList[ItemNumber]));
-                inventory.addItem(Instantiate(InventoryItemsPool.instance.SwordImages[ItemNumber]));
+                // EquipItem.EquipRightHandWith(Instantiate(ItemPool.instance.SwordList[ItemNumber]));
+                clone = Instantiate(InventoryItemsPool.instance.SwordImages[ItemNumber]);
             }
             else if (ItemType == ITEMTYPE.SHIELD)
             {
-               // EquipItem.EquipLeftHandWith(Instantiate(ItemPool.instance.ShieldList[ItemNumber]));
-                inventory.addItem(Instantiate(InventoryItemsPool.instance.ShieldImages[ItemNumber]));
+                // EquipItem.EquipLeftHandWith(Instantiate(ItemPool.instance.ShieldList[ItemNumber]));
+                clone = Instantiate(InventoryItemsPool.instance.ShieldImages[ItemNumber]);
             }
             else if (ItemType == ITEMTYPE.RIGHTSHOULDER)
             {
-               // EquipItem.EquipRightShoulderWith(Instantiate(ItemPool.instance.ShoulderRightList[ItemNumber]));
-               // EquipItem.EquipLeftShoulderWith(Instantiate(ItemPool.instance.ShoulderRightList[ItemNumber]));
-                inventory.addItem(Instantiate(InventoryItemsPool.instance.ShoulderImages[ItemNumber]));
+                // EquipItem.EquipRightShoulderWith(Instantiate(ItemPool.instance.ShoulderRightList[ItemNumber]));
+                // EquipItem.EquipLeftShoulderWith(Instantiate(ItemPool.instance.ShoulderRightList[ItemNumber]));
+                clone = Instantiate(InventoryItemsPool.instance.ShoulderImages[ItemNumber]);
             }
             else if (ItemType == ITEMTYPE.HELMET)
             {
-               // EquipItem.EquipHeadWith(Instantiate(ItemPool.instance.HelmetList[ItemNumber]));
-                inventory.addItem(Instantiate(InventoryItemsPool.instance.HelmetImages[ItemNumber]));
+                // EquipItem.EquipHeadWith(Instantiate(ItemPool.instance.HelmetList[ItemNumber]));
+                clone = Instantiate(InventoryItemsPool.instance.HelmetImages[ItemNumber]);
             }
             else if (ItemType == ITEMTYPE.BUCKLE)
             {
                // EquipItem.EquipBeltWith(Instantiate(ItemPool.instance.BuckleList[ItemNumber]));
-                inventory.addItem(Instantiate(InventoryItemsPool.instance.BuckleImages[ItemNumber]));
+                clone = Instantiate(InventoryItemsPool.instance.BuckleImages[ItemNumber]);
             }
             else
             {
                 Debug.Log("Nothing Selected");
             }
+
+            inventory.AddItem(clone);
+
+            //ItemAttributes itemAttributes = clone.GetComponent<ItemAttributes>();
+
+
 
             if (inventory.GetItem)
             {

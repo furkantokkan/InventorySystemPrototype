@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject[] itemSlot; // 0 - 11
     private bool FreeSpace;
-    public bool addItem(GameObject obj)
+    public bool AddItem(GameObject obj)
     {
         // we need to get the image to add to the inventory
         // we need to figure out if there is an empty slot in the backpack
